@@ -51,17 +51,17 @@
 
 .menuButton
 {
-    -fx-background-color :  #ACCFFA;
+    -fx-background-color :   #F5EFE7;
     -fx-background-radius: 0;
     -fx-border-width : 0;
     -fx-font-family: Serif;
-    -fx-font-size: 22px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-text-fill: #0d1117;
 }
 .menuButton:hover
 {
-    -fx-background-color :  #ecf2f8;
+    -fx-background-color :  #D8C4B6;
     -fx-background-radius: 0;
     -fx-border-width : 0;
 }

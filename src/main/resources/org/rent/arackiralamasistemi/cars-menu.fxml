@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rent.arackiralamasistemi.CarsMenuController">
+   <left>
+      <VBox prefHeight="334.0" prefWidth="110.0" style="-fx-background-color: #F5EFE7;" BorderPane.alignment="CENTER">
+         <children>
+            <Button cache="true" mnemonicParsing="false" onAction="#OnRentsClick" prefHeight="28.0" prefWidth="107.0" styleClass="menuButton" stylesheets="@css-file.css" text="Kiralamalar" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnCustomersClick" prefHeight="28.0" prefWidth="106.0" styleClass="menuButton" stylesheets="@css-file.css" text="Müşteriler" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnMaintenanceClick" prefHeight="28.0" prefWidth="107.0" styleClass="menuButton" stylesheets="@css-file.css" text="Bakım" />
+            <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnInsurancesClick" prefHeight="28.0" prefWidth="111.0" styleClass="menuButton" stylesheets="@css-file.css" text="Sigortalar" />
+            <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="28.0" prefWidth="111.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
+            <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="28.0" prefWidth="111.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <Pane prefHeight="65.0" prefWidth="600.0" style="-fx-background-color: #D8C4B6;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="-1.0" prefHeight="68.0" prefWidth="645.0" text="Araçlar ">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <TableView prefHeight="244.0" prefWidth="535.0" style="-fx-background-color: #3E5879;" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Araç ID" />
+          <TableColumn prefWidth="75.0" text="Marka Model ID" />
+            <TableColumn prefWidth="75.0" text="Plaka" />
+            <TableColumn prefWidth="75.0" text="Renk" />
+            <TableColumn prefWidth="75.0" text="Yakıt Tipi" />
+            <TableColumn prefWidth="75.0" text="Durum" />
+            <TableColumn prefWidth="75.0" text="Kira Bedeli" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
