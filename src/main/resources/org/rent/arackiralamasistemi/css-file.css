@@ -1,0 +1,141 @@
+.button
+{
+    -fx-background-color :  #21262d;
+    -fx-background-radius: 20;
+}
+.button:hover
+{
+    -fx-background-color : #3c434d;
+    -fx-background-radius: 20;
+}
+.button:pressed
+{
+    -fx-border-radius : 20;
+    -fx-border-width : 2;
+    -fx-border-color : #0d1117;
+}
+
+.button2
+{
+    -fx-background-color :  #ecf2f8;
+    -fx-background-radius: 20;
+}
+.button2:hover
+{
+    -fx-background-color : #f8f8f8;
+    -fx-background-radius: 20;
+}
+.button2:pressed
+{
+    -fx-border-radius : 20;
+    -fx-border-width : 2;
+    -fx-border-color : #0d1117;
+}
+
+.buttonAddBook
+{
+    -fx-background-color :  #accffa;
+    -fx-background-radius: 20;
+}
+.buttonAddBook:hover
+{
+    -fx-background-color : #2e73b8;
+    -fx-background-radius: 20;
+}
+.buttonAddBook:pressed
+{
+    -fx-border-radius : 20;
+    -fx-border-width : 2;
+    -fx-border-color : #ecf2f8;
+}
+
+.menuButton
+{
+    -fx-background-color :  #ACCFFA;
+    -fx-background-radius: 0;
+    -fx-border-width : 0;
+    -fx-font-family: Serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0d1117;
+}
+.menuButton:hover
+{
+    -fx-background-color :  #ecf2f8;
+    -fx-background-radius: 0;
+    -fx-border-width : 0;
+}
+.menuButton.button:pressed
+{
+    -fx-background-color :  #ecf2f8;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width : 2;
+    -fx-border-color : #3486cf5a;
+}
+
+.textField
+{
+    -fx-background-color: #ecf2f8;
+    -fx-background-radius: 30;
+    -fx-border-color: #0d1117;
+    -fx-border-radius: 15;
+    -fx-border-width: 2;
+}
+.textField:focused
+{
+    -fx-background-color: #f8f8f8;
+    -fx-background-radius: 30;
+    -fx-border-color: #0d1117;
+    -fx-border-radius: 15;
+    -fx-border-width: 2;
+}
+
+.label
+{
+    -fx-text-fill :  #283fa8;
+}
+.label:hover
+{
+    -fx-text-fill :  #445cc7;
+}
+
+.pane
+{
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #3686d6fa 0.0%, #3686d6fa 3.3557%, #3485d15a 34.8993%, #3486cf5a 67.0793%, #3486cfda 92.6297%, #599bde 100.0%);
+}
+
+.menu
+{
+    -fx-background-color: #c6cdd5;
+}
+
+.table-view
+{
+     -fx-background-color : #c6cdd5;
+}
+.table-view .column-header
+{
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background
+{
+    -fx-background-color: #89929b;
+    -fx-padding: 0 0 2px 0;
+}
+.table-view .table-cell
+{
+    -fx-border-color: transparent;
+}
+.table-row-cell: hover
+{
+    -fx-text-background-color: red;
+}
+.table-row-cell: odd
+{
+    -fx-background-color: #89929b;
+}
+.table-row-cell: even
+{
+    -fx-background-color: #c6cdd5;
+}
