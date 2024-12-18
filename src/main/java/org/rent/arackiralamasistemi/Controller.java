@@ -3,6 +3,7 @@ package org.rent.arackiralamasistemi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,6 +46,8 @@ public class Controller {
     @FXML
     void onLoginButtonClick(ActionEvent event) {
 
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "customers-menu.fxml");
     }
 
     private void changeScene(Stage stage, String fxmlName) {
