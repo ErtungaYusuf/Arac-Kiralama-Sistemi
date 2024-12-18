@@ -14,6 +14,7 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Araç Kiralama Sistemi");
         stage.setScene(scene);
         stage.show();
+        System.out.println("deneme");
     }
 
     public static void main(String[] args) {
