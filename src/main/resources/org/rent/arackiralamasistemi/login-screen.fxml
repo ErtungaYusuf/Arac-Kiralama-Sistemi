@@ -42,7 +42,7 @@
                   <Font name="Serif Bold" size="22.0" />
                </font>
             </Button>
-            <Label fx:id="wrongCredentialsLabel" alignment="CENTER" layoutX="45.0" layoutY="220.0" prefHeight="17.0" prefWidth="330.0" textFill="#cd3636" underline="true" />
+            <Label fx:id="wrongCredentialsLabel" alignment="CENTER" layoutX="45.0" layoutY="220.0" prefHeight="17.0" prefWidth="330.0" text="Databaseyi şimdilik atlamak için kullanıcı adı: b, şifre: b" textFill="#cd3636" underline="true" />
             <Label id="label" fx:id="createAccountLink" layoutX="176.0" layoutY="295.0" onMouseClicked="#onCreateAccount" stylesheets="@css-file.css" text="Hesap Oluştur" textFill="#d8c4b6" underline="true">
                <font>
                   <Font name="Serif Regular" size="14.0" />

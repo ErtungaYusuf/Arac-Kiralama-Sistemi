@@ -1,0 +1,143 @@
+--MySQL kullanılmıştır, intellj ile bağlaması daha kolay oluyor,
+--url = "jdbc:mysql://localhost:3306/AracKiralama";// Veritabanı URL'si 
+--username = "root"; // Veritabanı kullanıcı adı
+--password = "mannertribomb19A";
+
+-- Veritabanı Oluşturma
+CREATE DATABASE AracKiralama;
+
+-- Veritabanını Kullanma
+USE AracKiralama;
+
+
+-- Müşteriler Tablosu
+CREATE TABLE Musteriler (
+    MusteriID INT PRIMARY KEY,
+    TCKimlikNo VARCHAR(11) NOT NULL,
+    EhliyetNo VARCHAR(20) NOT NULL,
+    Isim VARCHAR(50) NOT NULL,
+    Soyisim VARCHAR(50) NOT NULL,
+    Telefon VARCHAR(15) NOT NULL
+);
+
+-- MarkaveModel Tablosu
+CREATE TABLE MarkaveModel (
+    MarkaModelID INT PRIMARY KEY,
+    Marka VARCHAR(50) NOT NULL,
+    Model VARCHAR(50) NOT NULL
+);
+
+-- Araçlar Tablosu
+CREATE TABLE Araclar (
+    AracID INT PRIMARY KEY,
+    MarkaModelID INT NOT NULL,
+    Plaka VARCHAR(20) NOT NULL,
+    Renk VARCHAR(20),
+    YakitTipi VARCHAR(20),
+    Durum VARCHAR(20),
+    GundelikKiraBedeli DECIMAL(10, 2),
+    FOREIGN KEY (MarkaModelID) REFERENCES MarkaveModel(MarkaModelID)
+);
+
+-- Kiralama Tablosu
+CREATE TABLE Kiralama (
+    KiraID INT PRIMARY KEY,
+    MusteriID INT NOT NULL,
+    AracID INT NOT NULL,
+    BaslangicTarihi DATE NOT NULL,
+    BitisTarihi DATE NOT NULL,
+    ToplamUcret DECIMAL(10, 2),
+    FOREIGN KEY (MusteriID) REFERENCES Musteriler(MusteriID),
+    FOREIGN KEY (AracID) REFERENCES Araclar(AracID)
+);
+
+-- Bakım Tablosu
+CREATE TABLE Bakim (
+    BakimID INT PRIMARY KEY,
+    AracID INT NOT NULL,
+    BakimTarihi DATE NOT NULL,
+    Maliyet DECIMAL(10, 2),
+    Aciklama TEXT,
+    FOREIGN KEY (AracID) REFERENCES Araclar(AracID)
+);
+
+-- Sigortalar Tablosu
+CREATE TABLE Sigortalar (
+    SigortaID INT PRIMARY KEY,
+    AracID INT NOT NULL,
+    PoliceNo VARCHAR(50) NOT NULL,
+    SigortaTuru VARCHAR(50) NOT NULL,
+    BaslangicTarihi DATE NOT NULL,
+    BitisTarihi DATE NOT NULL,
+    Maliyet DECIMAL(10, 2),
+    FOREIGN KEY (AracID) REFERENCES Araclar(AracID)
+);
+
+--==================================================================================
+-- Müşteriler Tablosu Örnek Veriler
+INSERT INTO Musteriler (MusteriID, TCKimlikNo, EhliyetNo, Isim, Soyisim, Telefon)
+VALUES
+(1, '12345678901', 'EH123456', 'Ali', 'Yılmaz', '5551234567'),
+(2, '98765432109', 'EH654321', 'Ayşe', 'Kara', '5559876543'),
+(3, '45678912345', 'EH987654', 'Mehmet', 'Demir', '5556547890'),
+(4, '78912345678', 'EH456789', 'Fatma', 'Çelik', '5553216548'),
+(5, '11223344556', 'EH112233', 'Zeynep', 'Arslan', '5557894561');
+
+-- MarkaveModel Tablosu Örnek Veriler
+INSERT INTO MarkaveModel (MarkaModelID, Marka, Model)
+VALUES
+(1, 'Toyota', 'Corolla'),
+(2, 'Ford', 'Focus'),
+(3, 'BMW', '320i'),
+(4, 'Mercedes', 'C200'),
+(5, 'Renault', 'Clio');
+
+-- Araçlar Tablosu Örnek Veriler
+INSERT INTO Araclar (AracID, MarkaModelID, Plaka, Renk, YakitTipi, Durum, GundelikKiraBedeli)
+VALUES
+(1, 1, '34ABC123', 'Beyaz', 'Benzin', 'Uygun', 300.00),
+(2, 2, '35XYZ789', 'Mavi', 'Dizel', 'Kirada', 250.00),
+(3, 3, '06DEF456', 'Siyah', 'Elektrik', 'Bakımda', 500.00),
+(4, 4, '34EFG321', 'Gri', 'Benzin', 'Uygun', 450.00),
+(5, 5, '35HIJ654', 'Kırmızı', 'Dizel', 'Kirada', 200.00);
+
+-- Kiralama Tablosu Örnek Veriler
+INSERT INTO Kiralama (KiraID, MusteriID, AracID, BaslangicTarihi, BitisTarihi, ToplamUcret)
+VALUES
+(1, 1, 1, '2024-12-01', '2024-12-10', 3000.00),
+(2, 2, 2, '2024-12-05', '2024-12-15', 2500.00),
+(3, 3, 4, '2024-11-20', '2024-11-25', 2250.00),
+(4, 4, 5, '2024-12-10', '2024-12-20', 2000.00),
+(5, 5, 3, '2024-12-15', '2024-12-25', 5000.00);
+
+-- Bakım Tablosu Örnek Veriler
+INSERT INTO Bakim (BakimID, AracID, BakimTarihi, Maliyet, Aciklama)
+VALUES
+(1, 3, '2024-11-20', 1500.00, 'Lastik değişimi ve genel bakım'),
+(2, 1, '2024-10-15', 500.00, 'Yağ değişimi'),
+(3, 4, '2024-09-01', 750.00, 'Fren balatası değişimi'),
+(4, 5, '2024-08-10', 1000.00, 'Motor kontrolü'),
+(5, 2, '2024-07-25', 1200.00, 'Akü değişimi');
+
+-- Sigortalar Tablosu Örnek Veriler
+INSERT INTO Sigortalar (SigortaID, AracID, PoliceNo, SigortaTuru, BaslangicTarihi, BitisTarihi, Maliyet)
+VALUES
+(1, 1, 'POL123456', 'Kasko', '2024-01-01', '2024-12-31', 2000.00),
+(2, 2, 'POL654321', 'Trafik', '2024-06-01', '2025-05-31', 1000.00),
+(3, 3, 'POL789123', 'Kasko', '2024-03-01', '2025-02-28', 3000.00),
+(4, 4, 'POL321654', 'Trafik', '2024-05-01', '2025-04-30', 1500.00),
+(5, 5, 'POL456789', 'Kasko', '2024-07-01', '2025-06-30', 2500.00);
+
+--==========================================================================
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL
+);
+
+-- Örnek veri ekleme
+INSERT INTO Users (username, password) VALUES
+('admin', '12345'),
+('user1', 'password1'),
+('user2', 'password2');
