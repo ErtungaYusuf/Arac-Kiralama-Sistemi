@@ -127,7 +127,8 @@ public class BakimMenuController  {
 
     @FXML
     void OnNewMaintenanceAddClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "add-maintenance-menu");
     }
 
     @FXML

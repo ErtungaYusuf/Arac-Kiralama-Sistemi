@@ -130,7 +130,8 @@ public class RentsMenuController {
 
     @FXML
     void OnNewRentAddClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "add-rents-menu");
     }
 
     @FXML

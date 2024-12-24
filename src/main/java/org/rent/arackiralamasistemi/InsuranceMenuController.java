@@ -155,7 +155,8 @@ public class InsuranceMenuController {
 
     @FXML
     void OnNewInsuranceAddClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "add-insurance-menu");
     }
 
     private void changeScene(Stage stage, String fxmlName) {
