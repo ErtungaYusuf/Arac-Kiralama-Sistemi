@@ -104,7 +104,8 @@ public class CarsMenuController {
 
     @FXML
     void OnCustomersClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "customers-menu");
     }
 
     @FXML
@@ -125,12 +126,14 @@ public class CarsMenuController {
 
     @FXML
     void OnMaintenanceClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "maintenance-menu");
     }
 
     @FXML
     void OnRentsClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "rents-menu");
     }
     private void changeScene(Stage stage, String fxmlName) {
         try {

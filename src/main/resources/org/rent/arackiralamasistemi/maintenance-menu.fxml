@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rent.arackiralamasistemi.BakimMenuController">
+   <left>
+      <VBox prefHeight="534.0" prefWidth="176.0" style="-fx-background-color: #F5EFE7;" BorderPane.alignment="CENTER">
+         <children>
+            <Button cache="true" mnemonicParsing="false" onAction="#OnRentsClick" prefHeight="40.0" prefWidth="178.0" styleClass="menuButton" stylesheets="@css-file.css" text="Kiralamalar" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnCustomersClick" prefHeight="40.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@css-file.css" text="Müşteriler" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnMaintenanceClick" prefHeight="40.0" prefWidth="182.0" styleClass="menuButton" stylesheets="@css-file.css" text="Bakım" />
+            <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnInsurancesClick" prefHeight="40.0" prefWidth="195.0" styleClass="menuButton" stylesheets="@css-file.css" text="Sigortalar" />
+            <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="40.0" prefWidth="186.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
+            <Button fx:id="filtersButton" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnFiltersClick" prefHeight="40.0" prefWidth="191.0" styleClass="menuButton" stylesheets="@css-file.css" text="Filtrele" />
+            <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="40.0" prefWidth="186.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <Pane prefHeight="65.0" prefWidth="600.0" style="-fx-background-color: #D8C4B6;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="-1.0" prefHeight="68.0" prefWidth="645.0" text="Bakımlar">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <TableView fx:id="TableView" layoutX="50" layoutY="50" prefHeight="400" prefWidth="600" style="-fx-background-color: F0BB78;">
+         <columns>
+            <TableColumn fx:id="BakimIDView" prefWidth="130.4000244140625" text="Bakım ID" />
+            <TableColumn fx:id="AracIDView" prefWidth="100.79998779296875" text="Araç ID" />
+            <TableColumn fx:id="BakimTarihiView" prefWidth="113.60003662109375" text="Bakım Tarihi" />
+            <TableColumn fx:id="MaliyetView" prefWidth="101.60003662109375" text="Maliyet" />
+            <TableColumn fx:id="AciklamaView" prefWidth="124.79998779296875" text="Açıklama" />
+         </columns>
+      </TableView>
+   </center>
+</BorderPane>
