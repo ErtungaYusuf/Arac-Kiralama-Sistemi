@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,8 +21,26 @@
                 <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="40.0" prefWidth="220.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
             <Button fx:id="filtersButton" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnFiltersClick" prefHeight="40.0" prefWidth="214.0" styleClass="menuButton" stylesheets="@css-file.css" text="Filtrele" />
             <Button cache="true" mnemonicParsing="false" onAction="#OnNewCustomerAddOnClick" prefHeight="40.0" prefWidth="233.0" styleClass="menuButton" stylesheets="@css-file.css" text="Yeni Müşteri Ekle" />
-            <Button cache="true" mnemonicParsing="false" onAction="#OnCustomerDeleteClick" prefHeight="40.0" prefWidth="233.0" styleClass="menuButton" stylesheets="@css-file.css" text="Müşteri Sil" />
                 <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="40.0" prefWidth="235.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="silButton" layoutX="31.0" layoutY="121.0" mnemonicParsing="false" onAction="#onSilClick" prefHeight="40.0" prefWidth="141.0" style="-fx-background-color: #3E5879;" styleClass="button2" stylesheets="@css-file.css" text="Sil" textFill="#0d1117">
+                     <font>
+                        <Font name="Serif Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="23.0" layoutY="27.0" prefHeight="28.0" prefWidth="157.0" text="  ID ile Müşteri Silme">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="SilField" layoutX="26.0" layoutY="67.0" prefHeight="32.0" prefWidth="151.0" style="-fx-background-color: #D8C4B6;" styleClass="textField" stylesheets="@css-file.css">
+                     <font>
+                        <Font name="Serif Regular" size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </Pane>
             </children>
         </VBox>
     </left>

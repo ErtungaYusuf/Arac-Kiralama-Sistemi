@@ -8,9 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -44,6 +46,12 @@ public class CustomerMenuController {
 
     @FXML
     private TableColumn<Customer, String> TelefonView;
+
+    @FXML
+    private Button silButton;
+
+    @FXML
+    private TextField SilField;
 
     @FXML
     public void initialize() {
@@ -98,9 +106,44 @@ public class CustomerMenuController {
     }
 
     @FXML
-    void OnCustomerDeleteClick(ActionEvent event) {
+    void onSilClick(ActionEvent event) {
+        // Kullanıcıdan ID alınması
+        String musteriIDStr = SilField.getText();
 
+        // ID'nin geçerli olup olmadığını kontrol et
+        if (musteriIDStr.isEmpty()) {
+            System.out.println("Müşteri ID'si girilmedi.");
+            return;
+        }
+
+        int musteriID = Integer.parseInt(musteriIDStr);
+
+        // Veritabanı bağlantısı
+        String query = "DELETE FROM Musteriler WHERE MusteriID = ?";
+
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Sorguya ID'yi bağlama
+            preparedStatement.setInt(1, musteriID);
+
+            // Silme işlemini gerçekleştir
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Müşteri başarıyla silindi.");
+                // Silme işlemi başarılıysa, table'ı güncelle
+                TableView.setItems(getCustomersFromDatabase());
+            } else {
+                System.out.println("ID ile müşteri bulunamadı.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Silme işlemi sırasında bir hata oluştu.");
+        }
     }
+
 
     @FXML
     void OnNewCustomerAddOnClick(ActionEvent event) {
