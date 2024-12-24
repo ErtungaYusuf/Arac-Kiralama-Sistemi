@@ -1,7 +1,7 @@
 --MySQL kullanılmıştır, intellj ile bağlaması daha kolay oluyor,
 --url = "jdbc:mysql://localhost:3306/AracKiralama";// Veritabanı URL'si 
 --username = "root"; // Veritabanı kullanıcı adı
---password = "mannertribomb19A";
+--password = "mannertribomb19A"; // Veritabanı şifre
 
 -- Veritabanı Oluşturma
 CREATE DATABASE AracKiralama;
@@ -73,6 +73,12 @@ CREATE TABLE Sigortalar (
     FOREIGN KEY (AracID) REFERENCES Araclar(AracID)
 );
 
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL
+);
+
 --==================================================================================
 -- Müşteriler Tablosu Örnek Veriler
 INSERT INTO Musteriler (MusteriID, TCKimlikNo, EhliyetNo, Isim, Soyisim, Telefon)
@@ -128,16 +134,15 @@ VALUES
 (4, 4, 'POL321654', 'Trafik', '2024-05-01', '2025-04-30', 1500.00),
 (5, 5, 'POL456789', 'Kasko', '2024-07-01', '2025-06-30', 2500.00);
 
---==========================================================================
-
-CREATE TABLE Users (
-    UserID INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(50) NOT NULL
-);
 
 -- Örnek veri ekleme
 INSERT INTO Users (username, password) VALUES
 ('admin', '12345'),
 ('user1', 'password1'),
+('a', 'a'),
 ('user2', 'password2');
+--==========================================================================
+
+
+
+
