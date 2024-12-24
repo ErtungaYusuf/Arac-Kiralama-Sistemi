@@ -12,7 +12,7 @@ USE AracKiralama;
 
 -- Müşteriler Tablosu
 CREATE TABLE Musteriler (
-    MusteriID INT PRIMARY KEY,
+    MusteriID INT AUTO_INCREMENT PRIMARY KEY,
     TCKimlikNo VARCHAR(11) NOT NULL,
     EhliyetNo VARCHAR(20) NOT NULL,
     Isim VARCHAR(50) NOT NULL,
@@ -22,14 +22,14 @@ CREATE TABLE Musteriler (
 
 -- MarkaveModel Tablosu
 CREATE TABLE MarkaveModel (
-    MarkaModelID INT PRIMARY KEY,
+    MarkaModelID INT AUTO_INCREMENT PRIMARY KEY,
     Marka VARCHAR(50) NOT NULL,
     Model VARCHAR(50) NOT NULL
 );
 
 -- Araçlar Tablosu
 CREATE TABLE Araclar (
-    AracID INT PRIMARY KEY,
+    AracID INT AUTO_INCREMENT PRIMARY KEY,
     MarkaModelID INT NOT NULL,
     Plaka VARCHAR(20) NOT NULL,
     Renk VARCHAR(20),
@@ -41,7 +41,7 @@ CREATE TABLE Araclar (
 
 -- Kiralama Tablosu
 CREATE TABLE Kiralama (
-    KiraID INT PRIMARY KEY,
+    KiraID INT AUTO_INCREMENT PRIMARY KEY,
     MusteriID INT NOT NULL,
     AracID INT NOT NULL,
     BaslangicTarihi DATE NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE Kiralama (
 
 -- Bakım Tablosu
 CREATE TABLE Bakim (
-    BakimID INT PRIMARY KEY,
+    BakimID INT AUTO_INCREMENT PRIMARY KEY,
     AracID INT NOT NULL,
     BakimTarihi DATE NOT NULL,
     Maliyet DECIMAL(10, 2),
@@ -63,7 +63,7 @@ CREATE TABLE Bakim (
 
 -- Sigortalar Tablosu
 CREATE TABLE Sigortalar (
-    SigortaID INT PRIMARY KEY,
+    SigortaID INT AUTO_INCREMENT PRIMARY KEY,
     AracID INT NOT NULL,
     PoliceNo VARCHAR(50) NOT NULL,
     SigortaTuru VARCHAR(50) NOT NULL,
@@ -73,8 +73,9 @@ CREATE TABLE Sigortalar (
     FOREIGN KEY (AracID) REFERENCES Araclar(AracID)
 );
 
+-- Users Tablosu
 CREATE TABLE Users (
-    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(50) NOT NULL
 );

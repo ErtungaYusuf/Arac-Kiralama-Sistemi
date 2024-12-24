@@ -104,7 +104,8 @@ public class CustomerMenuController {
 
     @FXML
     void OnNewCustomerAddOnClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "add-customer-menu");
     }
     @FXML
     void OnCars(ActionEvent event) {
