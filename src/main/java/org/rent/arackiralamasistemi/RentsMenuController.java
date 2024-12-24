@@ -11,15 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Objects;
 
 public class RentsMenuController {
@@ -49,8 +46,51 @@ public class RentsMenuController {
     @FXML
     private TableColumn<Rent, Double> ToplamUcretView;
 
+
     @FXML
-    private Button filtersButton;
+    private TextField SilField;
+
+    @FXML
+    private Button silButton;
+
+    @FXML
+    void onSilClick(ActionEvent event) {
+        String kiraIDText = SilField.getText();
+
+        if (kiraIDText.isEmpty()) {
+            System.out.println("Kira ID girilmedi.");
+            return;
+        }
+
+        try {
+            int kiraID = Integer.parseInt(kiraIDText);
+
+            // SQL query to delete the rental record by KiraID
+            String deleteQuery = "DELETE FROM Kiralama WHERE KiraID = ?";
+
+            try (Connection connection = db.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+                preparedStatement.setInt(1, kiraID);
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Kiralama kaydı başarıyla silindi.");
+                    // Refresh the TableView after deletion
+                    TableView.setItems(getRentsFromDatabase());
+                } else {
+                    System.out.println("Kiralama kaydı bulunamadı.");
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Veritabanı hatası: " + e.getMessage());
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Geçersiz Kira ID.");
+        }
+    }
+
 
     @FXML
     void OnCars(ActionEvent event) {
@@ -68,11 +108,6 @@ public class RentsMenuController {
     void OnExitClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "login-screen");
-    }
-
-    @FXML
-    void OnFiltersClick(ActionEvent event) {
-        // Boş bırakıldı
     }
 
     @FXML

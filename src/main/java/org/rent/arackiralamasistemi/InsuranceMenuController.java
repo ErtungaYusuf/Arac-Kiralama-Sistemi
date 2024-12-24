@@ -12,10 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -26,6 +28,10 @@ public class InsuranceMenuController {
     private Stage stage;
     private Scene scene;
 
+    @FXML
+    private TextField SilField;
+    @FXML
+    private Button silButton;
     public DatabaseConnection db = new DatabaseConnection();
     private ObservableList<ObservableList> data;
 
@@ -39,6 +45,46 @@ public class InsuranceMenuController {
             System.out.println("Veri yüklenirken hata: " + e.getMessage());
         }
     }
+
+    @FXML
+    void onSilClick(ActionEvent event) {
+        // Get the SigortaID from the SilField
+        String sigortaIDStr = SilField.getText();
+
+        // Check if the SigortaID is valid
+        if (sigortaIDStr.isEmpty()) {
+            System.out.println("Sigorta ID'si girilmedi.");
+            return;
+        }
+
+        int sigortaID = Integer.parseInt(sigortaIDStr);
+
+        // Database connection and delete query
+        String query = "DELETE FROM Sigortalar WHERE SigortaID = ?";
+
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Set the SigortaID in the query
+            preparedStatement.setInt(1, sigortaID);
+
+            // Execute the delete operation
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Sigorta başarıyla silindi.");
+                // After successful deletion, refresh the table view
+                buildData();
+            } else {
+                System.out.println("Sigorta ID'si ile kayıt bulunamadı.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Silme işlemi sırasında bir hata oluştu.");
+        }
+    }
+
     public void buildData() throws SQLException {
         Connection c = db.getConnection();
         data = FXCollections.observableArrayList();
@@ -87,10 +133,6 @@ public class InsuranceMenuController {
         changeScene(stage, "login-screen");
     }
 
-    @FXML
-    void OnFiltersClick(ActionEvent event) {
-
-    }
 
     @FXML
     void OnInsurancesClick(ActionEvent event) {
@@ -110,10 +152,7 @@ public class InsuranceMenuController {
         changeScene(stage, "rents-menu");
     }
 
-    @FXML
-    void OnDeleteInsuranceClick(ActionEvent event) {
 
-    }
     @FXML
     void OnNewInsuranceAddClick(ActionEvent event) {
 

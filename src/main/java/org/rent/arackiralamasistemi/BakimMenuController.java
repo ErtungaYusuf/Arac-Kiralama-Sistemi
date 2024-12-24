@@ -11,15 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Objects;
 
 public class BakimMenuController  {
@@ -28,6 +25,10 @@ public class BakimMenuController  {
     private Stage stage;
     private Scene scene;
 
+    @FXML
+    private TextField SilField;
+    @FXML
+    private Button silButton;
     @FXML
     private TableView<Maintenance> TableView;
 
@@ -50,6 +51,44 @@ public class BakimMenuController  {
     private Button filtersButton;
 
     @FXML
+    void onSilClick(ActionEvent event) {
+        String bakimIDText = SilField.getText();
+
+        if (bakimIDText.isEmpty()) {
+            System.out.println("Bakım ID girilmedi.");
+            return;
+        }
+
+        try {
+            int bakimID = Integer.parseInt(bakimIDText);
+
+            // SQL query to delete the maintenance record by BakimID
+            String deleteQuery = "DELETE FROM Bakim WHERE BakimID = ?";
+
+            try (Connection connection = db.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+                preparedStatement.setInt(1, bakimID);
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Bakım kaydı başarıyla silindi.");
+                    // Refresh the TableView after deletion
+                    TableView.setItems(getMaintenanceFromDatabase());
+                } else {
+                    System.out.println("Bakım kaydı bulunamadı.");
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Veritabanı hatası: " + e.getMessage());
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Geçersiz Bakım ID.");
+        }
+    }
+
+    @FXML
     void OnCars(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "cars-menu");
@@ -67,14 +106,11 @@ public class BakimMenuController  {
         changeScene(stage, "login-screen");
     }
 
-    @FXML
-    void OnFiltersClick(ActionEvent event) {
-        // Boş bırakıldı
-    }
 
     @FXML
     void OnInsurancesClick(ActionEvent event) {
-        // Boş bırakıldı
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "insurance-menu");
     }
 
     @FXML
@@ -89,10 +125,6 @@ public class BakimMenuController  {
         changeScene(stage, "rents-menu");
     }
 
-    @FXML
-    void OnDeleteMaintenanceInfoClick(ActionEvent event) {
-
-    }
     @FXML
     void OnNewMaintenanceAddClick(ActionEvent event) {
 

@@ -170,7 +170,8 @@ public class CarsMenuController {
 
     @FXML
     void OnNewCarAddClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "add-cars-menu");
     }
 
 }
