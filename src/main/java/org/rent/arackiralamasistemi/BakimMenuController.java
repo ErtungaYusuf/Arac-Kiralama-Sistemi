@@ -51,7 +51,8 @@ public class BakimMenuController  {
 
     @FXML
     void OnCars(ActionEvent event) {
-        // Boş bırakıldı
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "cars-menu");
     }
 
     @FXML
@@ -100,12 +101,13 @@ public class BakimMenuController  {
         // Verileri yükleme
         TableView.setItems(getMaintenanceFromDatabase());
     }
+    public DatabaseConnection db = new DatabaseConnection();
 
     private ObservableList<Maintenance> getMaintenanceFromDatabase() {
         ObservableList<Maintenance> maintenanceList = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM Bakim";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AracKiralama", "root", "mannertribomb19A");
+        try (Connection connection = db.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 

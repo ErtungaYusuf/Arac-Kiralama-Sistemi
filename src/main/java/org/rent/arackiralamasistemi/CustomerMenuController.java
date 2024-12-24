@@ -58,12 +58,13 @@ public class CustomerMenuController {
         // Verileri yükleme
         TableView.setItems(getCustomersFromDatabase());
     }
+    public DatabaseConnection db = new DatabaseConnection();
 
     private ObservableList<Customer> getCustomersFromDatabase() {
         ObservableList<Customer> customers = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM Musteriler";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AracKiralama", "root", "mannertribomb19A");
+        try (Connection connection = db.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
@@ -98,7 +99,8 @@ public class CustomerMenuController {
 
     @FXML
     void OnCars(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "cars-menu");
     }
 
     @FXML

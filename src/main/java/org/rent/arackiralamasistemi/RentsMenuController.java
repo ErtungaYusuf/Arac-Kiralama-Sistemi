@@ -54,7 +54,8 @@ public class RentsMenuController {
 
     @FXML
     void OnCars(ActionEvent event) {
-        // Boş bırakıldı
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "cars-menu");
     }
 
     @FXML
@@ -104,12 +105,13 @@ public class RentsMenuController {
         // Verileri yükleme
         TableView.setItems(getRentsFromDatabase());
     }
+    public DatabaseConnection db = new DatabaseConnection();
 
     private ObservableList<Rent> getRentsFromDatabase() {
         ObservableList<Rent> rents = FXCollections.observableArrayList();
 
         String query = "SELECT * FROM Kiralama";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AracKiralama", "root", "mannertribomb19A");
+        try (Connection connection = db.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
