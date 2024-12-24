@@ -108,6 +108,7 @@ public class CarsMenuController {
 
     }
 
+
     @FXML
     void OnMaintenanceClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -118,6 +119,16 @@ public class CarsMenuController {
     void OnRentsClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "rents-menu");
+    }
+
+    @FXML
+    void OnCarDeleteClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnNewCarAddClick(ActionEvent event) {
+
     }
 
 }

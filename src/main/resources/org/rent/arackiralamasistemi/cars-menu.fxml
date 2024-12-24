@@ -19,6 +19,8 @@
             <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnInsurancesClick" prefHeight="40.0" prefWidth="195.0" styleClass="menuButton" stylesheets="@css-file.css" text="Sigortalar" />
             <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="40.0" prefWidth="186.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
             <Button fx:id="filtersButton" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnFiltersClick" prefHeight="40.0" prefWidth="191.0" styleClass="menuButton" stylesheets="@css-file.css" text="Filtrele" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnNewCarAddClick" prefHeight="40.0" prefWidth="182.0" styleClass="menuButton" stylesheets="@css-file.css" text="Yeni Araç Ekle" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnCarDeleteClick" prefHeight="40.0" prefWidth="182.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araç Sil" />
             <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="40.0" prefWidth="186.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
          </children>
       </VBox>

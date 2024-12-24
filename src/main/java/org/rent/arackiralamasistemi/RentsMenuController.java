@@ -93,6 +93,11 @@ public class RentsMenuController {
     }
 
     @FXML
+    void OnNewRentAddClick(ActionEvent event) {
+
+    }
+
+    @FXML
     public void initialize() {
         // Sütunlara veri bağlama
         KiraIDView.setCellValueFactory(new PropertyValueFactory<>("kiraID"));

@@ -98,6 +98,15 @@ public class CustomerMenuController {
     }
 
     @FXML
+    void OnCustomerDeleteClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnNewCustomerAddOnClick(ActionEvent event) {
+
+    }
+    @FXML
     void OnCars(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "cars-menu");

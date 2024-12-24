@@ -90,6 +90,15 @@ public class BakimMenuController  {
     }
 
     @FXML
+    void OnDeleteMaintenanceInfoClick(ActionEvent event) {
+
+    }
+    @FXML
+    void OnNewMaintenanceAddClick(ActionEvent event) {
+
+    }
+
+    @FXML
     public void initialize() {
         // Sütunlara veri bağlama
         BakimIDView.setCellValueFactory(new PropertyValueFactory<>("bakimID"));

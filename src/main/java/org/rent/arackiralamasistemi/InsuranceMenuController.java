@@ -88,6 +88,15 @@ public class InsuranceMenuController {
         changeScene(stage, "rents-menu");
     }
 
+    @FXML
+    void OnDeleteInsuranceClick(ActionEvent event) {
+
+    }
+    @FXML
+    void OnNewInsuranceAddClick(ActionEvent event) {
+
+    }
+
     private void changeScene(Stage stage, String fxmlName) {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlName + ".fxml")));

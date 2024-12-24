@@ -11,15 +11,17 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rent.arackiralamasistemi.CustomerMenuController">
     <left>
-        <VBox prefHeight="534.0" prefWidth="176.0" style="-fx-background-color: #F5EFE7;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="534.0" prefWidth="202.0" style="-fx-background-color: #F5EFE7;" BorderPane.alignment="CENTER">
             <children>
-                <Button cache="true" mnemonicParsing="false" onAction="#OnRentsClick" prefHeight="40.0" prefWidth="178.0" styleClass="menuButton" stylesheets="@css-file.css" text="Kiralamalar" />
-                <Button cache="true" mnemonicParsing="false" onAction="#OnCustomersClick" prefHeight="40.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@css-file.css" text="Müşteriler" />
-                <Button cache="true" mnemonicParsing="false" onAction="#OnMaintenanceClick" prefHeight="40.0" prefWidth="182.0" styleClass="menuButton" stylesheets="@css-file.css" text="Bakım" />
-                <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnInsurancesClick" prefHeight="40.0" prefWidth="195.0" styleClass="menuButton" stylesheets="@css-file.css" text="Sigortalar" />
-                <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="40.0" prefWidth="186.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
-            <Button fx:id="filtersButton" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnFiltersClick" prefHeight="40.0" prefWidth="191.0" styleClass="menuButton" stylesheets="@css-file.css" text="Filtrele" />
-                <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="40.0" prefWidth="186.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
+                <Button cache="true" mnemonicParsing="false" onAction="#OnRentsClick" prefHeight="40.0" prefWidth="203.0" styleClass="menuButton" stylesheets="@css-file.css" text="Kiralamalar" />
+                <Button cache="true" mnemonicParsing="false" onAction="#OnCustomersClick" prefHeight="40.0" prefWidth="207.0" styleClass="menuButton" stylesheets="@css-file.css" text="Müşteriler" />
+                <Button cache="true" mnemonicParsing="false" onAction="#OnMaintenanceClick" prefHeight="40.0" prefWidth="211.0" styleClass="menuButton" stylesheets="@css-file.css" text="Bakım" />
+                <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnInsurancesClick" prefHeight="40.0" prefWidth="204.0" styleClass="menuButton" stylesheets="@css-file.css" text="Sigortalar" />
+                <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="40.0" prefWidth="220.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
+            <Button fx:id="filtersButton" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnFiltersClick" prefHeight="40.0" prefWidth="214.0" styleClass="menuButton" stylesheets="@css-file.css" text="Filtrele" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnNewCustomerAddOnClick" prefHeight="40.0" prefWidth="233.0" styleClass="menuButton" stylesheets="@css-file.css" text="Yeni Müşteri Ekle" />
+            <Button cache="true" mnemonicParsing="false" onAction="#OnCustomerDeleteClick" prefHeight="40.0" prefWidth="233.0" styleClass="menuButton" stylesheets="@css-file.css" text="Müşteri Sil" />
+                <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="40.0" prefWidth="235.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
             </children>
         </VBox>
     </left>
