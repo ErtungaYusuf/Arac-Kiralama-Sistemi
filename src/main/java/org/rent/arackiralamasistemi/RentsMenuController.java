@@ -77,7 +77,8 @@ public class RentsMenuController {
 
     @FXML
     void OnInsurancesClick(ActionEvent event) {
-        // Boş bırakıldı
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "insurance-menu");
     }
 
     @FXML

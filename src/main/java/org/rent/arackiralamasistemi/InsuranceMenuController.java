@@ -1,5 +1,8 @@
 package org.rent.arackiralamasistemi;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,9 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class InsuranceMenuController {
@@ -20,29 +26,45 @@ public class InsuranceMenuController {
     private Stage stage;
     private Scene scene;
 
-    @FXML
-    private TableColumn<?, ?> AracIDView;
+    public DatabaseConnection db = new DatabaseConnection();
+    private ObservableList<ObservableList> data;
 
     @FXML
-    private TableColumn<?, ?> EndDateView;
-
+    private TableView<ObservableList> TableView;
     @FXML
-    private TableColumn<?, ?> MaliyetView;
+    public void initialize() {
+        try {
+            buildData();
+        } catch (SQLException e) {
+            System.out.println("Veri yüklenirken hata: " + e.getMessage());
+        }
+    }
+    public void buildData() throws SQLException {
+        Connection c = db.getConnection();
+        data = FXCollections.observableArrayList();
 
-    @FXML
-    private TableColumn<?, ?> PoliceNoView;
+        String SQL = "SELECT * FROM Sigortalar";
+        ResultSet rs = c.createStatement().executeQuery(SQL);
 
-    @FXML
-    private TableColumn<?, ?> SigortaIDView;
+        TableView.getColumns().clear();
 
-    @FXML
-    private TableColumn<?, ?> SigortaTürüView;
+        for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+            final int j = i;
+            TableColumn<ObservableList, String> col = new TableColumn<>(rs.getMetaData().getColumnName(i + 1));
+            col.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().get(j).toString()));
+            TableView.getColumns().add(col);
+        }
 
-    @FXML
-    private TableColumn<?, ?> StartDateView;
+        while (rs.next()) {
+            ObservableList<String> row = FXCollections.observableArrayList();
+            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                row.add(rs.getString(i));
+            }
+            data.add(row);
+        }
 
-    @FXML
-    private TableView<?> TableView;
+        TableView.setItems(data);
+    }
 
     @FXML
     private Button filtersButton;

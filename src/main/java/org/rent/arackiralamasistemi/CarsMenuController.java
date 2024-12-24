@@ -105,7 +105,8 @@ public class CarsMenuController {
 
     @FXML
     void OnInsurancesClick(ActionEvent event) {
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "insurance-menu");
     }
 
 
