@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,9 +43,59 @@ public class Controller {
     @FXML
     private Label wrongCredentialsLabel;
 
+    //-------------------------------------------create account kısmı:
     @FXML
-    void onCreateAccount(MouseEvent event) {
+    private Button createAccountButton;
 
+    @FXML
+    private PasswordField createPassword;
+
+    @FXML
+    private TextField createUsername;
+
+    @FXML
+    private Label loginLink;
+
+    @FXML
+    private Label wrongCredentialsLabelAccountCreate; // uyarı veya bildirim labeli
+
+    @FXML
+    void onCreateButtonClick(ActionEvent event) {
+        // Get the username and password from the input fields
+        String username = createUsername.getText();
+        String password = createPassword.getText();
+
+        // Check if username and password are provided
+        if (username.isEmpty() || password.isEmpty()) {
+            wrongCredentialsLabelAccountCreate.setText("Kullanıcı adı ve şifre boş olamaz.");
+            System.out.println("Kullanıcı adı ve şifre boş olamaz.");
+            return; // Stop further processing if fields are empty
+        }
+
+        // Call the method to create the user in the database
+        boolean isUserCreated = createUser(username, password);
+
+        // Inform the user if the account was created successfully or not
+        if (isUserCreated) {
+            wrongCredentialsLabelAccountCreate.setText("Kullanıcı başarıyla oluşturuldu.");
+            System.out.println("Kullanıcı başarıyla oluşturuldu.");
+        } else {
+            System.out.println("Kullanıcı oluşturulurken bir hata oluştu.");
+        }
+    }
+
+
+    @FXML
+    void onLoginAccount(MouseEvent event) {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "login-screen");
+    }
+
+    //--------------------------------------------------
+    @FXML
+    void onCreateAccount(MouseEvent event) { //create account sayfasına geçiş:
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "create-account-screen");
     }
 
     @FXML
@@ -107,6 +158,48 @@ public class Controller {
             e.printStackTrace();
         }
         return isValid;
+    }
+    private boolean createUser(String username, String password) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        boolean isCreated = false;
+
+        String insertQuery = "INSERT INTO Users (username, password) VALUES (?, ?)";
+
+        try {
+            // Check if the username already exists
+            String checkQuery = "SELECT * FROM Users WHERE username = ?";
+            PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
+            checkStatement.setString(1, username);
+            ResultSet resultSet = checkStatement.executeQuery();
+
+            if (resultSet.next()) {
+                wrongCredentialsLabelAccountCreate.setText("Bu kullanıcı adı zaten mevcut.");
+                System.out.println("Bu kullanıcı adı zaten mevcut.");
+            } else {
+                // Create the new user
+                PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+                insertStatement.setString(1, username);
+                insertStatement.setString(2, password);
+                int rowsAffected = insertStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    isCreated = true; // User was created successfully
+                } else {
+                    System.out.println("Kullanıcı oluşturulamadı.");
+                }
+
+                insertStatement.close();
+            }
+
+            resultSet.close();
+            checkStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isCreated;
     }
 
 
