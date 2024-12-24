@@ -10,14 +10,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -26,6 +29,11 @@ public class CarsMenuController {
     private Parent root;
     private Stage stage;
     private Scene scene;
+
+    @FXML
+    private TextField SilField;
+    @FXML
+    private Button silButton;
 
     private void changeScene(Stage stage, String fxmlName) {
         try {
@@ -87,6 +95,47 @@ public class CarsMenuController {
     }
 
     @FXML
+    void onSilClick(ActionEvent event) {
+        // Get the vehicle ID from the text field
+        String aracIDStr = SilField.getText();
+
+        // Check if the input is empty
+        if (aracIDStr.isEmpty()) {
+            System.out.println("Araç ID'si girilmedi.");
+            return;
+        }
+
+        // Convert the input to an integer (vehicle ID)
+        int aracID = Integer.parseInt(aracIDStr);
+
+        // Database connection and delete query
+        String query = "DELETE FROM araclar WHERE AracID = ?";
+
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Bind the vehicle ID to the query
+            preparedStatement.setInt(1, aracID);
+
+            // Execute the delete query
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Araç başarıyla silindi.");
+                // If deletion is successful, refresh the table data
+                buildData();
+            } else {
+                System.out.println("ID ile araç bulunamadı.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Silme işlemi sırasında bir hata oluştu.");
+        }
+    }
+
+
+    @FXML
     void OnCustomersClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "customers-menu");
@@ -98,10 +147,6 @@ public class CarsMenuController {
         changeScene(stage, "login-screen");
     }
 
-    @FXML
-    void OnFiltersClick(ActionEvent event) {
-
-    }
 
     @FXML
     void OnInsurancesClick(ActionEvent event) {
@@ -122,10 +167,6 @@ public class CarsMenuController {
         changeScene(stage, "rents-menu");
     }
 
-    @FXML
-    void OnCarDeleteClick(ActionEvent event) {
-
-    }
 
     @FXML
     void OnNewCarAddClick(ActionEvent event) {
