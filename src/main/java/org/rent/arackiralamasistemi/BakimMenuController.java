@@ -51,6 +51,9 @@ public class BakimMenuController  {
     private Button filtersButton;
 
     @FXML
+    Button StatisticButton;
+
+    @FXML
     void onSilClick(ActionEvent event) {
         String bakimIDText = SilField.getText();
 
@@ -129,6 +132,11 @@ public class BakimMenuController  {
     void OnNewMaintenanceAddClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "add-maintenance-menu");
+    }
+    @FXML
+    void OnStatisticClick(ActionEvent event){
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "statistic");
     }
 
     @FXML

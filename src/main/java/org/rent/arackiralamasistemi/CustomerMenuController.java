@@ -51,6 +51,9 @@ public class CustomerMenuController {
     private Button silButton;
 
     @FXML
+    Button StatisticButton;
+
+    @FXML
     private TextField SilField;
 
     @FXML
@@ -190,6 +193,13 @@ public class CustomerMenuController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "rents-menu");
     }
+
+    @FXML
+    void OnStatisticClick(ActionEvent event){
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "statistic");
+    }
+
     private void changeScene(Stage stage, String fxmlName) {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlName + ".fxml")));

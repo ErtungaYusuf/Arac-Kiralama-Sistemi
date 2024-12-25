@@ -31,6 +31,8 @@ public class InsuranceMenuController {
     @FXML
     private TextField SilField;
     @FXML
+    Button StatisticButton;
+    @FXML
     private Button silButton;
     public DatabaseConnection db = new DatabaseConnection();
     private ObservableList<ObservableList> data;
@@ -144,6 +146,12 @@ public class InsuranceMenuController {
     void OnMaintenanceClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "maintenance-menu");
+    }
+
+    @FXML
+    void OnStatisticClick(ActionEvent event){
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "statistic");
     }
 
     @FXML

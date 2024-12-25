@@ -51,6 +51,10 @@ public class CarsMenuController {
 
     @FXML
     private TableView<ObservableList> TableView;
+
+    @FXML
+    Button StatisticButton;
+
     @FXML
     public void initialize() {
         try {
@@ -59,6 +63,7 @@ public class CarsMenuController {
             System.out.println("Veri yüklenirken hata: " + e.getMessage());
         }
     }
+
     public void buildData() throws SQLException {
         Connection c = db.getConnection();
         data = FXCollections.observableArrayList();
@@ -165,6 +170,12 @@ public class CarsMenuController {
     void OnRentsClick(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "rents-menu");
+    }
+
+    @FXML
+    void OnStatisticClick(ActionEvent event){
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "statistic");
     }
 
 

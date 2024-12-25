@@ -54,6 +54,9 @@ public class RentsMenuController {
     private Button silButton;
 
     @FXML
+    Button StatisticButton;
+
+    @FXML
     void onSilClick(ActionEvent event) {
         String kiraIDText = SilField.getText();
 
@@ -96,6 +99,12 @@ public class RentsMenuController {
     void OnCars(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         changeScene(stage, "cars-menu");
+    }
+
+    @FXML
+    void OnStatisticClick(ActionEvent event){
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        changeScene(stage, "statistic");
     }
 
     @FXML

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rent.arackiralamasistemi.InsuranceMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rent.arackiralamasistemi.InsuranceMenuController">
    <left>
       <VBox prefHeight="534.0" prefWidth="209.0" style="-fx-background-color: #F5EFE7;" BorderPane.alignment="CENTER">
          <children>
@@ -21,6 +21,7 @@
             <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnCars" prefHeight="40.0" prefWidth="242.0" styleClass="menuButton" stylesheets="@css-file.css" text="Araçlar" />
             <Button cache="true" mnemonicParsing="false" onAction="#OnNewInsuranceAddClick" prefHeight="40.0" prefWidth="245.0" styleClass="menuButton" stylesheets="@css-file.css" text="Yeni Sigorta Ekle" />
             <Button alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#OnExitClick" prefHeight="40.0" prefWidth="230.0" styleClass="menuButton" stylesheets="@css-file.css" text="Çıkış Yap" />
+            <Button fx:id="StatisticButton" cache="true" mnemonicParsing="false" onAction="#OnStatisticClick" prefHeight="40.0" prefWidth="203.0" styleClass="menuButton" stylesheets="@css-file.css" text="İstatistik" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Pane layoutX="-11.0" prefHeight="254.0" prefWidth="228.0">
