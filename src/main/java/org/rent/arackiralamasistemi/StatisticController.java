@@ -50,7 +50,7 @@ public class StatisticController {
     public DatabaseConnection db = new DatabaseConnection();
     private ObservableList<ObservableList> data;
     private  Connection connection;
-    
+
 
     @FXML
     private TableView<ObservableList> TableView;
