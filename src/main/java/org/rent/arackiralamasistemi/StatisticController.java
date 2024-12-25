@@ -50,9 +50,7 @@ public class StatisticController {
     public DatabaseConnection db = new DatabaseConnection();
     private ObservableList<ObservableList> data;
     private  Connection connection;
-    String SQL1 = "SELECT A.AracID, A.Plaka, MM.Marka, MM.Model, A.GundelikKiraBedeli, A.YakitTipi, A.Renk, A.Durum " +
-            "FROM araclar A " +
-            "JOIN markavemodel MM ON A.MarkaModelID = MM.MarkaModelID";
+    
 
     @FXML
     private TableView<ObservableList> TableView;
