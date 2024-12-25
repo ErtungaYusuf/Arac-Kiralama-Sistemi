@@ -66,27 +66,40 @@ public class AddCustomerMenuController {
 
         // Veritabanına ekleme işlemi
         String query = "INSERT INTO Musteriler (TCKimlikNo, EhliyetNo, Isim, Soyisim, Telefon) VALUES (?, ?, ?, ?, ?)";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AracKiralama", "root", "mannertribomb19A");
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AracKiralama", "root", "mannertribomb19A")) {
+            // Transaction başlat
+            connection.setAutoCommit(false);
 
-            preparedStatement.setString(1, tcKimlikNo);
-            preparedStatement.setString(2, ehliyetNo);
-            preparedStatement.setString(3, isim);
-            preparedStatement.setString(4, soyisim);
-            preparedStatement.setString(5, telefon);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            int rowsAffected = preparedStatement.executeUpdate();
-            if (rowsAffected > 0) {
-                showAlert("Başarılı", "Müşteri başarıyla eklendi!", Alert.AlertType.INFORMATION);
-                clearFields();
-            } else {
-                showAlert("Hata", "Müşteri eklenemedi!", Alert.AlertType.ERROR);
+                preparedStatement.setString(1, tcKimlikNo);
+                preparedStatement.setString(2, ehliyetNo);
+                preparedStatement.setString(3, isim);
+                preparedStatement.setString(4, soyisim);
+                preparedStatement.setString(5, telefon);
+
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    // İşlem başarılı, commit yap
+                    connection.commit();
+                    showAlert("Başarılı", "Müşteri başarıyla eklendi!", Alert.AlertType.INFORMATION);
+                    clearFields();
+                } else {
+                    // İşlem başarısız, rollback yap
+                    connection.rollback();
+                    showAlert("Hata", "Müşteri eklenemedi!", Alert.AlertType.ERROR);
+                }
+            } catch (SQLException e) {
+                // Hata durumunda rollback yap
+                connection.rollback();
+                e.printStackTrace();
+                showAlert("Hata", "Veritabanı hatası: " + e.getMessage(), Alert.AlertType.ERROR);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Hata", "Veritabanı hatası: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("Hata", "Bağlantı hatası: " + e.getMessage(), Alert.AlertType.ERROR);
         }
+
     }
 
 
